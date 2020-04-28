@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [12.10.0]
 
     steps:
     - uses: actions/checkout@v2
@@ -38,4 +38,4 @@ jobs:
         REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
         ARGS: "-avz --delete"
         SOURCE: "dist/"
-        TARGET: "/nodeservice/nest-test"
+        TARGET: "/nodeservice/nest-test/src"
