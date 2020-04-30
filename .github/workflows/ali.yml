@@ -32,11 +32,17 @@ jobs:
         env:
           CI: true
 
-      - name: store file
+      - name: store dist file
         uses: actions/upload-artifact@v2
         with:
-          name: store
-          path: ./
+          name: dist
+          path: ./dist
+
+      - name: store package file
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: ./package*.json
 
   docker-push-image:
     needs: build
@@ -45,6 +51,9 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: store
+      - uses: actions/download-artifact@v2
+        with:
+          name: package
       - name: Build the Docker image
         run: |
           echo `pwd`
