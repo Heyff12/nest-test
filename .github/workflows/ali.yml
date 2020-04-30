@@ -44,6 +44,12 @@ jobs:
           name: package
           path: ./package*.json
 
+      - name: store dockerfile file
+        uses: actions/upload-artifact@v2
+        with:
+          name: dockerfile
+          path: ./Dockerfile
+
   docker-push-image:
     needs: build
     runs-on: ubuntu-latest
@@ -54,6 +60,9 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: package
+      - uses: actions/download-artifact@v2
+        with:
+          name: dockerfile
       - name: Build the Docker image
         run: |
           echo `pwd`
