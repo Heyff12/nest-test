@@ -1,4 +1,8 @@
 FROM node:12
-# replace this with your application's default port
+RUN mkdir -p /home/Service
+WORKDIR /home/Service    
+COPY ./dist /home/Service/src 
+COPY package*.json /home/Service/
+RUN  npm install --production
 EXPOSE 3001
-CMD ['node','main.js']
+CMD ["node","./src/main.js"]
