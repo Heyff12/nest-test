@@ -1,5 +1,6 @@
 import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,7 +16,8 @@ import { UsersModule } from './users/users.module';
     ConfigModule.register({ folder: './config' }), 
     AuthModule, 
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/nest')
+    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService],
