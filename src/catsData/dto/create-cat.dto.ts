@@ -16,5 +16,3 @@
     @IsString()
     readonly breed: string;
   }
-
-  
