@@ -1,20 +1,7 @@
-// export class CreateCatDto {
-//     readonly name: string;
-//     readonly age: number;
-//     readonly breed: string;
-//   }
+import { Min } from 'class-validator';
+import { CreateCatInput } from '../../graphql.schema';
 
-  import { IsString, IsInt } from 'class-validator';
-
-  export class CreateCatDto {
-    @IsString()
-    readonly name: string;
-  
-    @IsInt()
-    readonly age: number;
-  
-    @IsString()
-    readonly breed: string;
-  }
-
-  
+export class CreateCatDto extends CreateCatInput {
+  @Min(1)
+  age: number;
+}

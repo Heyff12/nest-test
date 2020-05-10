@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import * as compression from 'compression';
-import * as helmet from 'helmet';
-import * as csurf from 'csurf';
-import * as rateLimit from 'express-rate-limit';
+// import * as compression from 'compression';
+// import * as helmet from 'helmet';
+// import * as csurf from 'csurf';
+// import * as rateLimit from 'express-rate-limit';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
@@ -15,12 +15,12 @@ async function bootstrap() {
     logger: ['error', 'warn'],
   });
   app.use(logger);
-  app.use(
-    rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // limit each IP to 100 requests per windowMs
-    }),
-  );
+  // app.use(
+  //   rateLimit({
+  //     windowMs: 15 * 60 * 1000, // 15 minutes
+  //     max: 100, // limit each IP to 100 requests per windowMs
+  //   }),
+  // );
   // app.use(csurf());
   // app.use(compression)
   // app.use(helmet())
