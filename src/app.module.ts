@@ -20,13 +20,13 @@ import { GraphqlOptions } from './graphql.options'
     UsersModule,
     MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     ScheduleModule.forRoot(),
-    // GraphQLModule.forRootAsync({
-    //   useClass: GraphqlOptions
-    // }),
-    GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true,
+    GraphQLModule.forRootAsync({
+      useClass: GraphqlOptions
     }),
+    // GraphQLModule.forRoot({
+    //   typePaths: ['./**/*.graphql'],
+    //   installSubscriptionHandlers: true,
+    // }),
   ],
   controllers: [AppController],
   providers: [AppService],
