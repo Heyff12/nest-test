@@ -10,7 +10,7 @@
 
 import { Cron } from '@nestjs/schedule';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from './config/config.service';
+import { ConfigService } from './configModule/config.service';
 let num = 1
 
 @Injectable()
