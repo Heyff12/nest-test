@@ -19,7 +19,7 @@ import { EventsModule } from './events/events.module';
     ConfigModule.register({ folder: './config' }), 
     AuthModule, 
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     ScheduleModule.forRoot(),
     GraphQLModule.forRootAsync({
       useClass: GraphqlOptions

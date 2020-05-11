@@ -56,6 +56,12 @@ jobs:
           name: config
           path: config
 
+      - name: store views file
+        uses: actions/upload-artifact@v2
+        with:
+          name: views
+          path: views
+
   docker-push-image:
     needs: build
     runs-on: ubuntu-latest
@@ -68,6 +74,10 @@ jobs:
         with:
           name: config
           path: ./config
+      - uses: actions/download-artifact@v2
+        with:
+          name: views
+          path: ./views
       - uses: actions/download-artifact@v2
         with:
           name: package
