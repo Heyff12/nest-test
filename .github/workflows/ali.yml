@@ -50,6 +50,12 @@ jobs:
           name: dockerfile
           path: ./Dockerfile
 
+      - name: store config file
+        uses: actions/upload-artifact@v2
+        with:
+          name: config
+          path: config
+
   docker-push-image:
     needs: build
     runs-on: ubuntu-latest
@@ -57,6 +63,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
+          path: ./src
+      - uses: actions/download-artifact@v2
+        with:
+          name: config
+          path: ./config
       - uses: actions/download-artifact@v2
         with:
           name: package
