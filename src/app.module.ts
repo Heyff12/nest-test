@@ -11,6 +11,7 @@ import { ConfigModule } from './config/config.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { GraphqlOptions } from './graphql.options'
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { GraphqlOptions } from './graphql.options'
     //   typePaths: ['./**/*.graphql'],
     //   installSubscriptionHandlers: true,
     // }),
+    // EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
