@@ -28,7 +28,7 @@ import { EventsModule } from './events/events.module';
     //   typePaths: ['./**/*.graphql'],
     //   installSubscriptionHandlers: true,
     // }),
-    // EventsModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
