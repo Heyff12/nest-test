@@ -9,12 +9,20 @@ import { join } from 'path';
 import { AppModule } from './app.module';
 import { logger } from './common/middleware/logger.func.middleware';
 import { HttpExceptionFilter } from './common/exception/http-exception.filter'
+import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: ['error', 'warn'],
   });
-  app.use(logger);
+  //微服务
+  app.connectMicroservice({
+    transport: Transport.TCP,
+    options: { retryAttempts: 5, retryDelay: 3000 },
+  });
+
+  await app.startAllMicroservicesAsync();
+  //报错------
   // app.use(
   //   rateLimit({
   //     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -25,13 +33,24 @@ async function bootstrap() {
   // app.use(compression)
   // app.use(helmet())
 
+  //normal
+  app.use(logger);
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
 
-  // app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
+  // app.useGlobalFilters(new HttpExceptionFilter());  //全局报错
+
   await app.listen(3001);
+
+
+
+  // const app = await NestFactory.createMicroservice(AppModule, {
+  //   logger: ['error', 'warn'],
+  //   transport: Transport.TCP,
+  // });
+  // app.listen(() => console.log('Microservice is listening'));
 }
 bootstrap();

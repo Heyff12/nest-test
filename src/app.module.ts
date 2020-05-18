@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { GraphqlOptions } from './graphql.options'
 import { EventsModule } from './events/events.module';
+import { MathModule } from './math/math.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { EventsModule } from './events/events.module';
     //   installSubscriptionHandlers: true,
     // }),
     EventsModule,
+    MathModule
   ],
   controllers: [AppController],
   providers: [AppService],
