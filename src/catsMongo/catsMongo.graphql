@@ -7,14 +7,14 @@ type Mutation {
 }
 
 type CatMongo {
-  id: Int
+  id: String
   name: String
   age: Int
-  breed: String
+  breed: Boolean
 }
 
 input CreateCatMongoInput {
   name: String
   age: Int
-  breed: String
+  breed: Boolean
 }

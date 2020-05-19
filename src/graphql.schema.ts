@@ -14,7 +14,7 @@ export class CreateCatInput {
 export class CreateCatMongoInput {
     name?: string;
     age?: number;
-    breed?: string;
+    breed?: boolean;
 }
 
 export abstract class IQuery {
@@ -42,8 +42,8 @@ export class Cat {
 }
 
 export class CatMongo {
-    id?: number;
+    id?: string;
     name?: string;
     age?: number;
-    breed?: string;
+    breed?: boolean;
 }

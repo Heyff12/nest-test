@@ -4,7 +4,7 @@
 //     readonly breed: string;
 //   }
 
-  import { IsString, IsInt } from 'class-validator';
+  import { IsString, IsInt, IsBoolean } from 'class-validator';
 
   export class CreateCatDto {
     @IsString()
@@ -13,8 +13,8 @@
     @IsInt()
     readonly age: number;
   
-    @IsString()
-    readonly breed: string;
+    @IsBoolean()
+    readonly breed: boolean;
   }
 
   
