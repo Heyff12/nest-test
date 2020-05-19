@@ -22,7 +22,8 @@ import { MathModule } from './math/math.module';
     ConfigModule.register({ folder: './config' }), 
     AuthModule, 
     UsersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    MongooseModule.forRoot('mongodb://mongo_db/nest'),
     ScheduleModule.forRoot(),
     GraphQLModule.forRootAsync({
       useClass: GraphqlOptions
