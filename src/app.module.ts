@@ -15,6 +15,8 @@ import { GraphqlOptions } from './graphql.options'
 import { EventsModule } from './events/events.module';
 import { MathModule } from './math/math.module';
 
+const mongo_url = process.env.NODE_ENV === 'development' ? 'mongodb://localhost:27017/nest' : 'mongodb://mongo_db/nest'
+
 @Module({
   imports: [
     CatsModule,
@@ -22,8 +24,7 @@ import { MathModule } from './math/math.module';
     ConfigModule.register({ folder: './config' }), 
     AuthModule, 
     UsersModule,
-    // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
-    MongooseModule.forRoot('mongodb://mongo_db/nest'),
+    MongooseModule.forRoot(mongo_url),
     ScheduleModule.forRoot(),
     GraphQLModule.forRootAsync({
       useClass: GraphqlOptions

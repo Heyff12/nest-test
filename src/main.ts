@@ -45,12 +45,5 @@ async function bootstrap() {
 
   await app.listen(3001);
 
-
-
-  // const app = await NestFactory.createMicroservice(AppModule, {
-  //   logger: ['error', 'warn'],
-  //   transport: Transport.TCP,
-  // });
-  // app.listen(() => console.log('Microservice is listening'));
 }
 bootstrap();
