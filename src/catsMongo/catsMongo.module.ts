@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CatsMongoController } from './catsMongo.controller';
+import { CatsMongoResolvers } from './catsMongo.resolvers';
 import { CatsMongoService } from './catsMongo.service';
 import { CatSchema } from './schemas/cat.schema';
 
@@ -8,8 +8,8 @@ import { CatSchema } from './schemas/cat.schema';
   imports:[
     MongooseModule.forFeature([{ name: 'Cat', schema: CatSchema }])
   ],
-  controllers: [CatsMongoController],
-  providers: [CatsMongoService],
-  exports: [CatsMongoService]
+  controllers: [],
+  providers: [CatsMongoService,CatsMongoResolvers],
+  exports: [CatsMongoService,CatsMongoResolvers]
 })
 export class CatsMongoModule {}

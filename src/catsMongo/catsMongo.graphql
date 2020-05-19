@@ -1,0 +1,20 @@
+type Query {
+  getCatsMongo: [CatMongo]
+}
+
+type Mutation {
+  createCatMongo(createCatMongoInput: CreateCatMongoInput): CatMongo
+}
+
+type CatMongo {
+  id: Int
+  name: String
+  age: Int
+  breed: String
+}
+
+input CreateCatMongoInput {
+  name: String
+  age: Int
+  breed: String
+}
