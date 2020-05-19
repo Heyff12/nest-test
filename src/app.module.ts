@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
+import { CatsMongoModule } from './catsMongo/catsMongo.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { ConfigModule } from './configModule/config.module';
 import { AuthModule } from './auth/auth.module';
@@ -17,6 +18,7 @@ import { MathModule } from './math/math.module';
 @Module({
   imports: [
     CatsModule,
+    CatsMongoModule,
     ConfigModule.register({ folder: './config' }), 
     AuthModule, 
     UsersModule,

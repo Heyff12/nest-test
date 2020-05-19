@@ -17,7 +17,7 @@ import {
 import { Request } from 'express';
 
 import { CreateCatDto } from './dto/create-cat.dto';
-import { CatsService } from './catsMongo.service';
+import { CatsMongoService } from './catsMongo.service';
 import { Cat } from './interfaces/cat.interface';
 import { ForbiddenException } from '../common/exception/forbidden.exception';
 import { HttpExceptionFilter } from '../common/exception/http-exception.filter';
@@ -26,8 +26,8 @@ import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
 @Controller('catsMongo')
 // @UseFilters(new HttpExceptionFilter())
 @UseInterceptors(LoggingInterceptor)
-export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+export class CatsMongoController {
+  constructor(private readonly catsMongoService: CatsMongoService) {}
 
   //   @Get()
   //   findAll(@Req() request: Request): string {
@@ -58,8 +58,8 @@ export class CatsController {
 
   @Get()
   async findAll(@Req() request: Request): Promise<Cat[]> {
-    console.log(this.catsService.findAll());
-    return this.catsService.findAll();
+    console.log(this.catsMongoService.findAll());
+    return this.catsMongoService.findAll();
   }
 
   @Post()
@@ -67,7 +67,7 @@ export class CatsController {
   @Header('Cache-Control', 'none')
   async create(@Body() createCatDto: CreateCatDto) {
     // return 'This action adds a new cat';
-    await this.catsService.create(createCatDto);
+    await this.catsMongoService.create(createCatDto);
   }
 
   @Get('docs')
