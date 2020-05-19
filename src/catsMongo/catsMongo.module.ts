@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CatsController } from './cats.controller';
-import { CatsService } from './cats.service';
+import { CatsController } from './catsMongo.controller';
+import { CatsService } from './catsMongo.service';
 import { CatSchema } from './schemas/cat.schema';
 
 @Module({
@@ -12,4 +12,4 @@ import { CatSchema } from './schemas/cat.schema';
   providers: [CatsService],
   exports: [CatsService]
 })
-export class CatsModule {}
+export class CatsMongoModule {}

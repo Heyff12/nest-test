@@ -17,13 +17,13 @@ import {
 import { Request } from 'express';
 
 import { CreateCatDto } from './dto/create-cat.dto';
-import { CatsService } from './cats.service';
+import { CatsService } from './catsMongo.service';
 import { Cat } from './interfaces/cat.interface';
 import { ForbiddenException } from '../common/exception/forbidden.exception';
 import { HttpExceptionFilter } from '../common/exception/http-exception.filter';
 import { LoggingInterceptor } from '../common/interceptor/logging.interceptor';
 
-@Controller('cats')
+@Controller('catsMongo')
 // @UseFilters(new HttpExceptionFilter())
 @UseInterceptors(LoggingInterceptor)
 export class CatsController {
