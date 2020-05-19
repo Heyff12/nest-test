@@ -56,6 +56,12 @@ jobs:
           name: config
           path: config
 
+      - name: store deploy file
+        uses: actions/upload-artifact@v2
+        with:
+          name: deploy
+          path: deploy
+
       - name: store views file
         uses: actions/upload-artifact@v2
         with:
@@ -94,10 +100,21 @@ jobs:
     needs: docker-push-image
     runs-on: ubuntu-latest
     env:
-      CONTAINER_NAME: heyff12-nest-test
-      # DOCKER_REG: $IMAGE_NAME:$VERSION
       DOCKER_REG: heyff12/nest-test
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: deploy
+          path: ./deploy
+      - name: copy shell to remote server
+        uses: alinz/ssh-scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          key: ${{ secrets.ACCESS_TOKEN }}
+          port: ${{ secrets.REMOTE_PORT }}
+          user: ${{ secrets.REMOTE_USER }}
+          scp: |
+            deploy/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/deploys/nestTest
       - name: deploy on remote server
         uses: appleboy/ssh-action@master
         with:
@@ -106,10 +123,10 @@ jobs:
           key: ${{ secrets.ACCESS_TOKEN }}
           port: ${{ secrets.REMOTE_PORT }}
           command_timeout: 30m
-          envs: CONTAINER_NAME, DOCKER_REG
+          envs: DOCKER_REG
           script: |
             docker pull $DOCKER_REG
             docker image prune -f
-            if [ $(docker ps -a | grep -c $CONTAINER_NAME) -gt 0 ]; then docker stop $CONTAINER_NAME;docker rm $CONTAINER_NAME;fi
-            docker run --name $CONTAINER_NAME -d --rm -p 3001:3001 $DOCKER_REG
+            cd ~/deploys/nestTest
+            docker-compose up -d
   

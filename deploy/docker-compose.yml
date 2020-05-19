@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    image: heyff12/nest-test
+    ports:
+      - 3001:3001
+    container_name: heyff12_nest_test
+    networks:
+      - default
+      - mongo_net
+    external_links:
+      - mongo_db
+networks:
+  mongo_net:
+    external: true
