@@ -122,7 +122,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.ACCESS_TOKEN }}
           port: ${{ secrets.REMOTE_PORT }}
-          command_timeout: 30m
+          command_timeout: 60m
           envs: DOCKER_REG
           script: |
             docker pull $DOCKER_REG
